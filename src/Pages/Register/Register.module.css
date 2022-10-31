@@ -1,0 +1,39 @@
+.register {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      url(../../assets/login.0d62c309146bf2b11fb2.jpg);
+    height: calc(100vh - 60px);
+    background-position: 100% 80%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .registerForm {
+    padding: 2rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85));
+    border-radius: 10px;
+    width: 450px;
+    animation: 0.5s Zoomin ease-in-out;
+  }
+  
+  @keyframes Zoomin {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  .registerForm h1 {
+    color: white;
+    text-align: center;
+  }
+  
+  .registerForm input,
+  .registerForm input:focus {
+    background-color: transparent;
+    color: white;
+  }
+  

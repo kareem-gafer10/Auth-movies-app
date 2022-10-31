@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./Components/Navbar/Navbar";
+import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login/Login";
+import Register from "./Pages/Register/Register";
+import MovieDetails from "./Pages/MovieDetails/MovieDetails";
+import { AuthContext } from "./Context/AuthContext";
+import { userObserver } from "./Firebase";
+import { MoviesContext } from "./Context/MoviesContext";
 
-function App() {
+
+
+const App = () => {
+  const [currentUser, setCurrentUser] = useState();
+  const [movies, setMovies] = useState([]);
+
+
+
+  useEffect(() => {
+    userObserver(setCurrentUser);
+  }, []);
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AuthContext.Provider value={{ currentUser }}>
+        <MoviesContext.Provider value={{movies,setMovies}}>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/details/:id" element={<MovieDetails />} />
+          </Routes>
+        </MoviesContext.Provider>
+      </AuthContext.Provider>
+    </>
   );
-}
+};
 
 export default App;
